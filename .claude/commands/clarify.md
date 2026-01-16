@@ -149,7 +149,7 @@ Now that we have clarity, choose your next step:
 ```
 
 Use `AskUserQuestion` with these options:
-1. **Update Linear issue** - Save this to a new or existing Linear issue
+1. **Create or Update Linear issue** - Save this to a new or existing Linear issue
 2. **Save to file** - Write to `context/` for future reference
 3. **Continue conversation** - Just keep this in chat context
 
