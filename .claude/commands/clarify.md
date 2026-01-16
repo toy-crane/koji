@@ -1,7 +1,7 @@
 ---
-description: Clarify vague ideas through Socratic questioning. Helps transform abstract concepts into concrete understanding.
+description: Clarify vague ideas through Socratic questioning. Produces structured output to help decide next workflow step.
 allowed-tools: AskUserQuestion, Read, Glob, Grep
-argument-hint: <vague idea or task>
+argument-hint: <vague idea, task, or issue>
 ---
 
 ## Idea Clarification through Socratic Method
@@ -53,6 +53,18 @@ Ask questions ONE AT A TIME using `AskUserQuestion`. Cover these dimensions:
 - What are the key features or components?
 - What edge cases matter?
 
+**6. Type & Nature**
+- Is this a new feature, enhancement, bug fix, or refactor?
+- (If bug) When did it start? Can you reproduce it consistently?
+
+**7. Impact & Scope**
+- Which parts of the system will this touch? (UI, API, DB, etc.)
+- Is there similar existing code we should follow?
+
+**8. Verification**
+- How will we know this is complete and working?
+- What would a test case look like?
+
 #### Step 4: Continue Until Clear
 Keep asking until:
 - The idea is concrete and well-understood
@@ -61,10 +73,35 @@ Keep asking until:
 
 **Know when to stop**: Don't over-question. If you have enough clarity, stop asking.
 
-#### Step 5: Summarize Understanding
-When clarity is reached:
-- Restate the clarified idea in 2-3 sentences
-- List key decisions or requirements discovered
+#### Step 5: Produce Structured Output
+
+When clarity is reached, output in this format:
+
+---
+
+## Clarified Understanding
+
+**Type**: Feature | Bug | Enhancement | Refactor
+
+**Summary**
+{2-3 sentences describing what we're doing and why}
+
+**Key Decisions**
+- {Decision 1}
+- {Decision 2}
+
+**Scope Indicators**
+| Indicator | Assessment |
+|-----------|------------|
+| Affected areas | {UI / API / DB / Config / ...} |
+| Related existing code | {path if found, or "New implementation"} |
+| Estimated touch points | Few (1-2) / Several (3-5) / Many (6+) |
+
+**Verification**
+- Success looks like: {concrete completion criteria}
+- Test scenario: {if applicable}
+
+---
 
 ### Question Examples
 
@@ -106,3 +143,5 @@ Can you give me a specific example of how this would work in practice?
 - If user is vague, ask for concrete examples
 - End when both parties have shared understanding
 - Prioritize clarity over completeness - it's okay to leave some aspects open
+- Aim to complete within 5-8 questions total
+- Skip categories if already clear from context or previous answers
