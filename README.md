@@ -33,10 +33,28 @@ Idea / Issue
 
 | Command | Purpose |
 |---------|---------|
-| `/clarify` | Transform vague ideas into structured understanding |
+| `/clarify` | Transform vague ideas into structured understanding, then save to Linear/file |
 | `/plan` | Create detailed implementation plan |
 | `/prd` | Create product requirements document with phases |
 
+## File Organization
+
+The `context/` folder groups files by project:
+
+```
+context/
+├── {project-name}/
+│   ├── brief.md      # Clarified idea from /clarify
+│   ├── prd.md        # Product requirements doc
+│   └── plan.md       # Implementation plan
+├── auth-flow/
+│   └── brief.md
+└── payment-integration/
+    └── brief.md
+```
+
+This keeps all related files together and makes archiving easy.
+
 ---
 
-*This workflow is iteratively improved. See `.claude/commands/` for command details.*
+*This workflow is iteratively improved. See `commands/` for command details.*
