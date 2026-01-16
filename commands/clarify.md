@@ -1,6 +1,6 @@
 ---
 description: Clarify vague ideas through Socratic questioning. Produces structured output to help decide next workflow step.
-allowed-tools: AskUserQuestion, Read, Glob, Grep
+allowed-tools: AskUserQuestion, Read, Glob, Grep, Write, mcp__linear-server__create_issue, mcp__linear-server__update_issue, mcp__linear-server__get_issue, mcp__linear-server__list_issues
 argument-hint: <vague idea, task, or issue>
 ---
 
@@ -137,6 +137,41 @@ Let's make this concrete.
 
 Can you give me a specific example of how this would work in practice?
 ```
+
+#### Step 6: Ask About Next Action
+
+After producing the structured output, ask the user what they want to do with this clarified understanding:
+
+```markdown
+## What would you like to do with this?
+
+Now that we have clarity, choose your next step:
+```
+
+Use `AskUserQuestion` with these options:
+1. **Update Linear issue** - Save this to a new or existing Linear issue
+2. **Save to file** - Write to `context/` for future reference
+3. **Continue conversation** - Just keep this in chat context
+
+Based on their choice:
+- **Update Linear issue**: Ask which issue to update (or create new), then use Linear tools to save
+- **Save to file**: Write the structured output to `context/{topic}/brief.md`
+- **Continue conversation**: Proceed normally, the context is now established
+
+**File Organization Note:**
+The `context/` folder groups by project/task:
+```
+context/
+├── {project-name}/
+│   ├── brief.md      # Clarified idea from /clarify
+│   ├── prd.md        # Product requirements doc
+│   └── plan.md       # Implementation plan
+├── auth-flow/
+│   └── brief.md
+└── payment-integration/
+    └── brief.md
+```
+This keeps all related files together and makes archiving easy.
 
 ### Important Notes
 - Focus on extracting concrete details, not abstract discussion
